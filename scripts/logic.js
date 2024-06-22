@@ -1,4 +1,5 @@
-import { HomePage, DetailsOfCountry } from "./components.js";
+import { HomePage, DetailsOfCountry } from "../components/components.js";
+import Card from "../components/card.js";
 
 //UTILS
 const selector = (data) => {
@@ -29,25 +30,7 @@ export async function Data() {
 }
 
 //STRUCTURE OF THE COUNTRY CARD
-function Card(info) {
-    return `
-    <div class="countrie-box ${info.name}">
-        <div class="box">
-            <div class="flag">
-                <img src="${info.flags.png}" alt="" srcset="">
-            </div>
-            <div class="info">
-                <p class="title">${info.name}</p>
-                <div class="add-info">
-                    <p>Population: <span class="pop-info">${info.population}</span></p>
-                    <p>Region: <span class="region-info">${info.region}</span></p>
-                    <p>Capital: <span class="cap-info">${info.capital}</span></p>
-                </div>
-            </div>
-        </div>   
-    </div>
-    `;
-}
+
 
 //RESULT BASED OF THE USER INPUT
 async function FilterByCountrie() {
@@ -192,8 +175,6 @@ function ShowMoreDetails(cardName) {
     const cards = document.querySelectorAll(".box");
     const buttons = document.querySelectorAll(".border-details");
 
-    console.log(buttons);
-
     cards.forEach(card => 
         card.addEventListener("click", () => {
             let countryName = card.querySelector(".title").innerText;
@@ -201,12 +182,11 @@ function ShowMoreDetails(cardName) {
             let countryBorderCodes = countryDetails[0].borders;
             
             const countryBorderNames = cardName.filter(str1 => 
-                countryBorderCodes.some(str2 => str1.alpha3Code.includes(str2))
+                countryBorderCodes?.some?.(str2 => str1?.alpha3Code?.includes?.(str2))
             );
-        
 
-            console.log(buttons);
-            SwicthPages(countryDetails, countryBorderNames);  
+            console.log(countryBorderNames);
+            SwicthPages(countryDetails, countryBorderNames);
         }
     ));
 }
@@ -307,3 +287,18 @@ a tais elementos, isso quando o tema light esta ativado
 3-filtra paises e retornar o nome que corresponder os dados do pais orderm
 
 */ 
+
+String.prototype.padLeft = function(width, char) {
+    let result = this; //referencia as propriedades definidas no metodo constructor
+    
+    char = char || " "; // fallback
+    console.log(this);
+    if(this.length < width) {
+        result = new Array(width - this.length + 1).join(char) + this;
+    }
+
+    return result;
+}
+
+
+console.log("3.14".length);
