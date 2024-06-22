@@ -201,7 +201,7 @@ function ShowMoreDetails(cardName) {
             let countryBorderCodes = countryDetails[0].borders;
             
             const countryBorderNames = cardName.filter(str1 => 
-                countryBorderCodes.some(str2 => str1.alpha3Code.includes(str2))
+                countryBorderCodes?.some?.(str2 => str1?.alpha3Code?.includes(str2))
             );
         
 
