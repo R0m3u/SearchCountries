@@ -1,5 +1,4 @@
-import { HomePage, DetailsOfCountry } from "../components/components.js";
-import Card from "../components/card.js";
+import { HomePage } from "../components/Home.js";
 
 //UTILS
 const selector = (data) => {
@@ -9,7 +8,8 @@ const selector = (data) => {
 
 
 //LOAD APP AT THE HOME PAGE
-selector("body").innerHTML = HomePage();
+// selector("body").innerHTML = HomePage().;
+HomePage().onMount().onClick()
 
 //
 let showRegions = false;
@@ -42,7 +42,7 @@ async function FilterByCountrie() {
         country.name.toLowerCase().includes(query)
     );
 
-    RemoveAndAddCard(countriesFiltered);
+    // RemoveAndAddCard(countriesFiltered);
 }
 
 //TOGGLE VISIBILITY OF REGIONS CONTAINER
@@ -63,7 +63,7 @@ async function Region(element) {
         country.region === region
     );   
 
-    RemoveAndAddCard(countriesFiltered);
+    // RemoveAndAddCard(countriesFiltered);
 }
 
 
@@ -160,15 +160,15 @@ function toggleTheme() {
 
 
 //ADD AND REMOVE THE CARDS
-function RemoveAndAddCard(countries) {
-    const container = selector(".countries-flags");
+// function RemoveAndAddCard(countries) {
+//     const container = selector(".countries-flags");
 
-    container.innerHTML = countries.map(Card).join('');
+//     container.innerHTML = countries.map(Card).join('');
 
-    ShowMoreDetails(countries);
-    if(toggleThemeIsOn)
-        toggleTheme();
-}
+//     ShowMoreDetails(countries);
+//     if(toggleThemeIsOn)
+//         toggleTheme();
+// }
 
 //SWICTH PAGES
 function ShowMoreDetails(cardName) {
@@ -256,7 +256,7 @@ function loadElements() {
 
 async function ShowAll() {
     const countries = await Data();
-    RemoveAndAddCard(countries);    
+    // RemoveAndAddCard(countries);    
 }
 
 ShowAll();
